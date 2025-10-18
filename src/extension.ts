@@ -118,11 +118,11 @@ Confidence level and what additional files or context would improve accuracy.
 
 Code to review (do not analyze anything outside this block):
 —— CODE START ——
-{{paste the selected code here}}
+${selectedText}
 —— CODE END ——
 
 `;
-		vscode.commands.executeCommand("workbench.action.chat.open", '@swe-help ${prompt}');
+		vscode.commands.executeCommand("workbench.action.chat.open", `@swe-help ${prompt}`);
 	});
 
 	context.subscriptions.push(reviewCommand);

@@ -25,7 +25,8 @@
     "commands": [
       {
         "command": "swe-helper-chat.reviewSelectedCode",
-        "title": "Review selected code"
+        "title": "Review selected code",
+        "category": "SWE-Helper"
       }
     ]
   },

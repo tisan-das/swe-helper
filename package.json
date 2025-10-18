@@ -19,7 +19,7 @@
       {
         "id": "swe-helper-chat",
         "name": "swe-help",
-        "description": "Converse with LLMs for code-specific doubts"
+        "description": "Converse with the selected LLM for code-specific doubts"
       }
     ],
     "commands": [

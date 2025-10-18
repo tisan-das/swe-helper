@@ -25,15 +25,15 @@ export function activate(context: vscode.ExtensionContext) {
 	const chatParticipant = vscode.chat.createChatParticipant("swe-helper-chat", async (request, context, response, token) => {
 		const userQuery = request.prompt;
 
-		const chatModels = await vscode.lm.selectChatModels({vendor: 'copilot',family: 'claude-sonnet-4-5'});
-		if (chatModels.length === 0) {
-			response.markdown("Claude Sonnet 4.5 is not available. Please check your Copilot subscription and settings.");
-			return { errorDetails: { message: "Claude Sonnet 4.5 not available" } };
-		}
+		// const chatModels = await vscode.lm.selectChatModels({vendor: 'copilot',family: 'claude-sonnet-4-5'});
+		// if (chatModels.length === 0) {
+		// 	response.markdown("Claude Sonnet 4.5 is not available. Please check your Copilot subscription and settings.");
+		// 	return { errorDetails: { message: "Claude Sonnet 4.5 not available" } };
+		// }
 		const messages = [
 			vscode.LanguageModelChatMessage.User(userQuery)
 		];
-		const chatRequest = await chatModels[0].sendRequest(messages, undefined, token);
+		const chatRequest = await request.model.sendRequest(messages, undefined, token);
 		for await (const token of chatRequest.text){
 			response.markdown(token);
 		}

@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// context.subscriptions.push(disposable);
 
 	// Register a chat participant that can respond to the user queries
-	vscode.chat.createChatParticipant("swe-help", async (request, context, response, token) => {
+	const chatParticipant = vscode.chat.createChatParticipant("swe-helper-chat", async (request, context, response, token) => {
 		const userQuery = request.prompt;
 
 		const chatModels = await vscode.lm.selectChatModels({vendor: 'copilot',family: 'claude-sonnet-4-5'});
@@ -38,9 +38,24 @@ export function activate(context: vscode.ExtensionContext) {
 			response.markdown(token);
 		}
 	});
+	context.subscriptions.push(chatParticipant);
 
-	// Register a command
-	vscode.commands.registerCommand("swe-helper-chat.reviewSelectedCode", () => {
+	// Register a command to review the selected code
+	const reviewCommand = vscode.commands.registerCommand("swe-helper-chat.reviewSelectedCode", () => {
+		
+		// Get the selected code
+		const editor = vscode.window.activeTextEditor;
+		if(!editor){
+			vscode.window.showErrorMessage("No active editor is found. Please select some code first!");
+			return;
+		}
+
+		const selectedText = editor.document.getText(editor.selection);
+		if(!selectedText){
+			vscode.window.showErrorMessage("No code is selected. Please select some code to review!");
+			return;
+		}
+
 		const prompt = `
 You are a senior, security-focused code reviewer. Analyze the provided code added in the context and produce a concise, actionable review.
 
@@ -109,6 +124,8 @@ Code to review (do not analyze anything outside this block):
 `;
 		vscode.commands.executeCommand("workbench.action.chat.open", '@swe-help ${prompt}');
 	});
+
+	context.subscriptions.push(reviewCommand);
 }
 
 // This method is called when your extension is deactivated

@@ -17,19 +17,15 @@
   "contributes": {
     "chatParticipants": [
       {
-        "id": "vscode-msql-chat",
-        "name": "mssql",
-        "description": "Generate SQL Queries from natural language"
+        "id": "swe-helper-chat",
+        "name": "swe-help",
+        "description": "Converse with LLMs for code-specific doubts"
       }
     ],
     "commands": [
       {
-        "command": "swe-helper.helloWorld",
-        "title": "Hello World"
-      },
-      {
-        "command": "vscode-msql-chat.summarizeDatabase",
-        "title": "Summarize Database"
+        "command": "swe-helper-chat.reviewSelectedCode",
+        "title": "Review selected code"
       }
     ]
   },

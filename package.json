@@ -1,7 +1,7 @@
 {
   "name": "swe-helper",
   "displayName": "swe-helper",
-  "description": "",
+  "description": "Software Engg Expertise for Copilot Chat",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.99.3"
@@ -10,12 +10,26 @@
     "Other"
   ],
   "activationEvents": [],
+  "extensionDependencies": [
+    "github.copilot-chat"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "chatParticipants": [
+      {
+        "id": "vscode-msql-chat",
+        "name": "mssql",
+        "description": "Generate SQL Queries from natural language"
+      }
+    ],
     "commands": [
       {
         "command": "swe-helper.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "vscode-msql-chat.summarizeDatabase",
+        "title": "Summarize Database"
       }
     ]
   },

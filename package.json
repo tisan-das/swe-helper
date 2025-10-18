@@ -1,7 +1,7 @@
 {
   "name": "swe-helper",
   "displayName": "swe-helper",
-  "description": "",
+  "description": "Software Engg Expertise for Copilot Chat",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.99.3"
@@ -10,12 +10,23 @@
     "Other"
   ],
   "activationEvents": [],
+  "extensionDependencies": [
+    "github.copilot-chat"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
+    "chatParticipants": [
+      {
+        "id": "swe-helper-chat",
+        "name": "swe-help",
+        "description": "Converse with the selected LLM for code-specific doubts"
+      }
+    ],
     "commands": [
       {
-        "command": "swe-helper.helloWorld",
-        "title": "Hello World"
+        "command": "swe-helper-chat.reviewSelectedCode",
+        "title": "Review selected code",
+        "category": "SWE-Helper"
       }
     ]
   },

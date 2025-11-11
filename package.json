@@ -2,7 +2,7 @@
   "name": "swe-helper",
   "displayName": "swe-helper",
   "description": "Software Engg Expertise for Copilot Chat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "tisan",
   "repository": {
     "type": "git",
@@ -32,8 +32,41 @@
         "command": "swe-helper-chat.reviewSelectedCode",
         "title": "Review selected code",
         "category": "SWE-Helper"
+      },
+      {
+        "command": "swe-helper-chat.workOnJiraTicket",
+        "title": "Work on JIRA ticket (Bug/Feature)",
+        "category": "SWE-Helper"
+      },
+      {
+        "command": "swe-helper-chat.generateDiagram",
+        "title": "Generate diagram for code",
+        "category": "SWE-Helper"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "SWE Helper",
+      "properties": {
+        "swe-helper.jiraBaseUrl": {
+          "type": "string",
+          "default": "",
+          "description": "JIRA base URL (e.g., https://yourcompany.atlassian.net)",
+          "order": 1
+        },
+        "swe-helper.jiraEmail": {
+          "type": "string",
+          "default": "",
+          "description": "Your JIRA email address",
+          "order": 2
+        },
+        "swe-helper.jiraApiToken": {
+          "type": "string",
+          "default": "",
+          "description": "Your JIRA API token (generate from https://id.atlassian.com/manage-profile/security/api-tokens)",
+          "order": 3
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
